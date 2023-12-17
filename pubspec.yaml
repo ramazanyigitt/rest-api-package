@@ -1,6 +1,6 @@
 name: rest_api_package
 description: Do you want an easy way to handle requests without repeating yourself? rest-api-package offers you that! An easy way to handle Rest-API requests
-version: 1.0.1
+version: 1.0.2
 homepage: https://github.com/ramazanyigitt/rest-api-package
 repository: https://github.com/ramazanyigitt/rest-api-package
 issue_tracker: https://github.com/ramazanyigitt/rest-api-package/issues
