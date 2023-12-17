@@ -38,11 +38,13 @@ class RestApiHttpService {
   Future<Options> prepareOptions(IRestApiRequest request) async {
     final Map<String, String> headers = <String, String>{};
     headers.addAll(publicHeaders);
-    headers.putIfAbsent(HttpHeaders.contentTypeHeader, () => 'application/json');
+    headers.putIfAbsent(
+        HttpHeaders.contentTypeHeader, () => 'application/json');
     //headers.putIfAbsent(HttpHeaders.acceptHeader, () => 'application/json');
 
     if (request.bearerToken != null) {
-      headers.putIfAbsent(HttpHeaders.authorizationHeader, () => 'Bearer ${request.bearerToken}');
+      headers.putIfAbsent(HttpHeaders.authorizationHeader,
+          () => 'Bearer ${request.bearerToken}');
     }
     return Options(
         headers: headers,
@@ -60,7 +62,8 @@ class RestApiHttpService {
     bool isRawJson = false,
   }) async {
     Response response = await request(apiRequest, removeBaseUrl: removeBaseUrl);
-    return handleResponse<T>(response, parseModel: parseModel, isRawJson: isRawJson);
+    return handleResponse<T>(response,
+        parseModel: parseModel, isRawJson: isRawJson);
   }
 
   Future<List<T>> requestAndHandleList<T>(
@@ -77,7 +80,8 @@ class RestApiHttpService {
     );
   }
 
-  Future<Response> _baseRequest(IRestApiRequest apiRequest, {bool removeBaseUrl = false, dynamic data}) async {
+  Future<Response> _baseRequest(IRestApiRequest apiRequest,
+      {bool removeBaseUrl = false, dynamic data}) async {
     final dio = apiRequest.useNewDioInstance ? Dio() : this.dio;
     Response resp;
 
@@ -95,7 +99,9 @@ class RestApiHttpService {
         options: options,
         data: data ?? (apiRequest.body.isEmpty ? null : apiRequest.body),
         queryParameters: apiRequest.queryParameters,
-        onSendProgress: (apiRequest is IRestApiFileRequest) ? apiRequest.onSendProgress : null,
+        onSendProgress: (apiRequest is IRestApiFileRequest)
+            ? apiRequest.onSendProgress
+            : null,
       );
     } on DioException catch (e) {
       if (e.response != null) {
@@ -106,7 +112,8 @@ class RestApiHttpService {
     return resp;
   }
 
-  Future<Response> request(IRestApiRequest apiRequest, {bool removeBaseUrl = false}) async {
+  Future<Response> request(IRestApiRequest apiRequest,
+      {bool removeBaseUrl = false}) async {
     return _baseRequest(apiRequest, removeBaseUrl: removeBaseUrl);
   }
 
@@ -116,7 +123,8 @@ class RestApiHttpService {
     bool isRawJson = false,
   }) async {
     Response response = await requestForm(apiRequest);
-    return handleResponse<T>(response, parseModel: parseModel, isRawJson: isRawJson);
+    return handleResponse<T>(response,
+        parseModel: parseModel, isRawJson: isRawJson);
   }
 
   Future<List<T>> requestFormAndHandleList<T>(
@@ -125,7 +133,8 @@ class RestApiHttpService {
     bool isRawJson = false,
   }) async {
     Response response = await requestForm(apiRequest);
-    return handleResponseList<T>(response, parseModel: parseModel, isRawJson: isRawJson);
+    return handleResponseList<T>(response,
+        parseModel: parseModel, isRawJson: isRawJson);
   }
 
   Future<Response> requestForm(
@@ -143,13 +152,16 @@ class RestApiHttpService {
   Future<Response> requestFile(
     IRestApiFileRequest apiRequest,
   ) async {
-    assert(apiRequest.fileUploadObjects.isNotEmpty, 'File upload objects can not be empty');
+    assert(apiRequest.fileUploadObjects.isNotEmpty,
+        'File upload objects can not be empty');
 
     var formData = FormData();
 
     for (var fileUploadObject in apiRequest.fileUploadObjects) {
       var mfile = MultipartFile.fromBytes(
-        fileUploadObject.file != null ? fileUploadObject.file!.readAsBytesSync() : fileUploadObject.fileBytes!,
+        fileUploadObject.file != null
+            ? fileUploadObject.file!.readAsBytesSync()
+            : fileUploadObject.fileBytes!,
         filename: fileUploadObject.fileName,
         contentType: MediaType(
           fileUploadObject.fileMediaType.value,
@@ -166,7 +178,9 @@ class RestApiHttpService {
     return _baseRequest(apiRequest, data: formData);
   }
 
-  T handleResponse<T>(Response response, {required T Function(Map<String, dynamic> json) parseModel, required bool isRawJson}) {
+  T handleResponse<T>(Response response,
+      {required T Function(Map<String, dynamic> json) parseModel,
+      required bool isRawJson}) {
     if (response.statusCode == 200 || response.statusCode == 201) {
       try {
         final data = response.data;
@@ -190,7 +204,9 @@ class RestApiHttpService {
     }
   }
 
-  List<T> handleResponseList<T>(Response response, {required T Function(Map<String, dynamic> json) parseModel, required bool isRawJson}) {
+  List<T> handleResponseList<T>(Response response,
+      {required T Function(Map<String, dynamic> json) parseModel,
+      required bool isRawJson}) {
     if (response.statusCode == 200 || response.statusCode == 201) {
       try {
         final data = response.data;
