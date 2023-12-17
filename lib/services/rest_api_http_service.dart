@@ -16,7 +16,6 @@ class RestApiHttpService {
     this.baseUrl,
   ) {
     //log('Cookie interceptor adding');
-    if (!kIsWeb) dio.interceptors.add(CookieManager(cookieJar));
     //log('Cookie interceptor added');
   }
 
@@ -24,7 +23,9 @@ class RestApiHttpService {
     this.dio,
     this.baseUrl,
     this.cookieJar,
-  );
+  ) {
+    if (!kIsWeb) dio.interceptors.add(CookieManager(cookieJar));
+  }
 
   void setPublicHeader(String key, String value) {
     publicHeaders[key] = value;

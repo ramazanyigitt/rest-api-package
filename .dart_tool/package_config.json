@@ -33,9 +33,9 @@
     },
     {
       "name": "cookie_jar",
-      "rootUri": "file:///Users/ramazanyigit/.pub-cache/hosted/pub.dev/cookie_jar-3.0.1",
+      "rootUri": "file:///Users/ramazanyigit/.pub-cache/hosted/pub.dev/cookie_jar-4.0.8",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "2.15"
     },
     {
       "name": "dio",
@@ -45,7 +45,7 @@
     },
     {
       "name": "dio_cookie_manager",
-      "rootUri": "file:///Users/ramazanyigit/.pub-cache/hosted/pub.dev/dio_cookie_manager-2.1.4",
+      "rootUri": "file:///Users/ramazanyigit/.pub-cache/hosted/pub.dev/dio_cookie_manager-3.1.1",
       "packageUri": "lib/",
       "languageVersion": "2.15"
     },
@@ -164,6 +164,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "universal_io",
+      "rootUri": "file:///Users/ramazanyigit/.pub-cache/hosted/pub.dev/universal_io-2.2.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
       "name": "vector_math",
       "rootUri": "file:///Users/ramazanyigit/.pub-cache/hosted/pub.dev/vector_math-2.1.4",
       "packageUri": "lib/",
@@ -176,7 +182,7 @@
       "languageVersion": "2.17"
     }
   ],
-  "generated": "2023-12-17T19:04:54.446418Z",
+  "generated": "2023-12-17T19:34:48.064399Z",
   "generator": "pub",
   "generatorVersion": "3.0.3"
 }

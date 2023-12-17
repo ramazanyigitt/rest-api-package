@@ -1,6 +1,6 @@
 name: rest_api_package
 description: Do you want an easy way to handle requests without repeating yourself? rest-api-package offers you that! An easy way to handle Rest-API requests
-version: 1.0.2+1
+version: 1.0.0+1
 homepage: https://github.com/ramazanyigitt/rest-api-package
 repository: https://github.com/ramazanyigitt/rest-api-package
 issue_tracker: https://github.com/ramazanyigitt/rest-api-package/issues
@@ -16,8 +16,8 @@ dependencies:
   flutter:
     sdk: flutter
   dio: ^5.3.2
-  dio_cookie_manager: ^2.0.0
-  cookie_jar: ^3.0.1
+  dio_cookie_manager: ^3.1.1
+  cookie_jar: ^4.0.8
   http_parser: ^4.0.2
 
 dev_dependencies:
